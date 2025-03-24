@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My LIFF App</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script>
+    liff.init({ liffId: 'YOUR_LIFF_ID' }) // ここは後で書き換えます
+      .then(() => {
+        // LIFF初期化成功
+        if (!liff.isLoggedIn()) {
+          // ログインしていない場合はログインさせる
+          liff.login();
+        } else {
+          // ログインしている場合は何か処理をする（今回は省略）
+          document.getElementById('message').textContent = 'LIFFアプリが開かれました！';
+        }
+      })
+      .catch((err) => {
+        // LIFF初期化失敗
+        console.error(err);
+        document.getElementById('message').textContent = 'LIFFの初期化に失敗しました: ' + err;
+      });
+  </script>
+</head>
+<body>
+  <h1 id="message"></h1>
+</body>
+</html>
